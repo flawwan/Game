@@ -1,6 +1,6 @@
 <?php
 
-define('USER', 'root');
-define('PASS', '');
-define('HOST', '127.0.0.1');
-define('DBNAME', 'gameCentral');
+define('DB_USER', 'root');
+define('DB_PASS', 'super9server');
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'gameCentral');
