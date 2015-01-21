@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$user = Database::query('SELECT * FROM `users` WHERE `user_name`=:username AND `user_pass`=:password', array(':username' => $PostUser, ':password' => $PostPass));
 	if ($user->rowCount()) {
 		$userInfo = $user->fetch();
-		User::login($userInfo['user_id'], $userInfo['user_name']);
+		User::login($userInfo['user_name'], $userInfo['user_id']);
 	}
 
 }
@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<label>Lösenord:</label>
 		<input type='password' name='password'/>
 		<input type='submit' class='button'/>
+		<a href="register.php">Skapa Användare</a>
+	</fieldset>
 </form>
 <?php require '../template/footer.php'; ?>
 

@@ -26,4 +26,9 @@ class User
 		self::$userID = $uid;
 	}
 
+	static function getUser()
+	{
+		return self::$username;
+	}
+
 }
