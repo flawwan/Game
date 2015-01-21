@@ -6,7 +6,7 @@ $PostPass = '';
 #print_r(Database::query('SELECT * FROM `users`', array())->fetchAll());
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$PostUser = $_POST['username'];
-	$PostPass = $_POST['password'];
+	$PostPass = hash('SHA512', $_POST['password']);
 	$user = Database::query('SELECT * FROM `users` WHERE `user_name`=:username AND `user_pass`=:password', array(':username' => $PostUser, ':password' => $PostPass));
 	if ($user->rowCount()) {
 		$userInfo = $user->fetch();
