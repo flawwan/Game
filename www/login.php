@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if ($user->rowCount()) {
 		$userInfo = $user->fetch();
 		User::login($userInfo['user_name'], $userInfo['user_id']);
+		header('location: index.php');
 	}
 
 }
