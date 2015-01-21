@@ -10,7 +10,7 @@
 
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="http://5v5.se:90/">5v5</a></h1>
+			<h1><a href="index.php">GameCentral</a></h1>
 		</li>
 		<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -23,10 +23,13 @@
 			<li class="has-dropdown not-click">
 				<a href="#">Controlpanel</a>
 				<ul class="dropdown">
-					<li><a href="login.php">Login</a></li>
-					<?php if (User::loggedIn()):?>
+
+					<?php if (User::loggedIn()): ?>
 						<li><a href="registerGame.php">Register Game</a></li>
-					<?php endif;?>
+						<li><a href="logout.php">Logout</a></li>
+					<?php else: ?>
+						<li><a href="login.php">Login</a></li>
+					<?php endif; ?>
 				</ul>
 			</li>
 		</ul>

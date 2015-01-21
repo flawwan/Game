@@ -1,6 +1,6 @@
 <?php require '../lib/bootstrap.php'; ?>
 <?php require '../template/header.php'; ?>
 <?php
-Database::query("SELECT * FROM users", array());
+echo "hi";
 ?>
 <?php require '../template/footer.php'; ?>

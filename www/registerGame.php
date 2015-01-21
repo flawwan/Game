@@ -1,5 +1,10 @@
 <?php require '../lib/bootstrap.php'; ?>
 <?php
+if (User::loggedIn() === false) {
+	header("location: login.php");
+	exit();
+}
+
 $status = '';
 $USER_ID = 1;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

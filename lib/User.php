@@ -2,16 +2,28 @@
 
 class User
 {
-	private $userID = null;
+	private static $userID = null;
+	private static $username = null;
+
 	function __construct()
 	{
-		if(isset($_SESSION['login'])){
-			$this->userID = $_SESSION['login'];
+		if (isset($_SESSION['uid'])) {
+			self::$userID = $_SESSION['uid'];
+			self::$username = $_SESSION['username'];
 		}
 	}
-	function loggedIn()
+
+	static function loggedIn()
 	{
-		return $this->userID === null ? false: true;
+		return self::$userID === null ? false : true;
+	}
+
+	static function login($username, $uid)
+	{
+		$_SESSION['username'] = $username;
+		$_SESSION['uid'] = $uid;
+		self::$username = $username;
+		self::$userID = $uid;
 	}
 
 }
