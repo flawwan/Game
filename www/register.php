@@ -7,7 +7,6 @@ $PostPass = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $PostUser = $_POST['username'];
     $PostPass = hash('SHA512', $_POST['password']);
-    echo $PostPass;
     $test = Database::query('SELECT * FROM `users`', array());
     $user = Database::query('INSERT INTO `users`(`user_name`, `user_pass`) VALUES (:post_name, :post_pass)',
                       array(':post_name' => $PostUser,
