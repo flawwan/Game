@@ -31,4 +31,9 @@ class User
 		return self::$username;
 	}
 
+	static function getUserID()
+	{
+		return self::$userID;
+	}
+
 }
