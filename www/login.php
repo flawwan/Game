@@ -1,19 +1,22 @@
 <?php require '../lib/bootstrap.php'; ?>
-
 <?php
-$PostUser = '';
-$PostPass = '';
-#print_r(Database::query('SELECT * FROM `users`', array())->fetchAll());
+if (User::loggedIn()) { //Cant register if logged in
+	header("location: index.php");
+	exit();
+}
+$status = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$PostUser = $_POST['username'];
-	$PostPass = hash('SHA512', $_POST['password']);
-	$user = Database::query('SELECT * FROM `users` WHERE `user_name`=:username AND `user_pass`=:password', array(':username' => $PostUser, ':password' => $PostPass));
+	$postUser = $_POST['username'];
+	$postPass = hash('SHA512', $_POST['password']);
+	$user = Database::query('SELECT * FROM `users` WHERE `user_name`=:username AND `user_pass`=:password', array(':username' => $postUser, ':password' => $postPass));
 	if ($user->rowCount()) {
 		$userInfo = $user->fetch();
 		User::login($userInfo['user_name'], $userInfo['user_id']);
 		header('location: index.php');
+		exit();
+	} else {
+		$status = "Could not login. Wrong username/pass";
 	}
-
 }
 
 ?>
@@ -21,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php require '../template/header.php'; ?>
 <form class='left' method='post'>
 	<fieldset>
+		<?= $status; ?>
 		<legend>Logga in:</legend>
 		<label>Användarnamn:</label>
 		<input type='text' name='username'/>
@@ -31,4 +35,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</fieldset>
 </form>
 <?php require '../template/footer.php'; ?>
-
