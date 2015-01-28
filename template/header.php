@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="public/css/foundation.min.css"/>
+	<script src="public/js/jquery.min.js"></script>
 </head>
 <body>
 <nav class="top-bar" data-topbar="" role="navigation">
@@ -28,7 +29,8 @@
 				<ul class="dropdown">
 
 					<?php if (User::loggedIn()): ?>
-						<li><a href="registerGame.php">Register Game</a></li>
+						<li><a href="games.php">List Games</a></li>
+						<li><a href="registerNode.php">Register Game</a></li>
 						<li><a href="logout.php">Logout</a></li>
 					<?php else: ?>
 						<li><a href="login.php">Login</a></li>
