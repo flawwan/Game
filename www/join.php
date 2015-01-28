@@ -6,8 +6,11 @@ if (!User::loggedIn()) {
 }
 require '../template/header.php';
 
+
+$id = intval($_GET['id']);
+
 //check if game exists
-$exists = Database::query('SELECT `game_id` FROM `nodes` WHERE `game_id`=:id', array(':id' => $_GET['id']))->rowCount();
+$exists = Database::query('SELECT `game_id` FROM `nodes` WHERE `game_id`=:id', array(':id' => $id))->rowCount();
 
 if ($exists == 0) {
 	die("game not found");
@@ -16,20 +19,20 @@ if ($exists == 0) {
 
 Database::query("SELECT `matchmaking_id` FROM `matchmaking` WHERE `matchmaking_node`=:node AND `matchmaking_user`=:user", array(
 	':user' => User::getUserID(),
-	':node' => $_GET['id']
+	':node' => $id
 ));
 if (Database::rowCount() == 0) {
 	//Does not exist in db
 	$key = hash("SHA512", bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)));
 	Database::query("INSERT INTO `matchmaking`(`matchmaking_user`, `matchmaking_node`, `matchmaking_key`) VALUES(:user,:node, :key)", array(
 		':user' => User::getUserID(),
-		':node' => $_GET['id'],
+		':node' => $id,
 		':key' => $key
 	));
 } else {
 	Database::query("UPDATE `matchmaking` SET `matchmaking_last_seen`=NOW() WHERE `matchmaking_node`=:node AND `matchmaking_user`=:user", array(
 		':user' => User::getUserID(),
-		':node' => $_GET['id']
+		':node' => $id
 	));
 }
 ?>
@@ -37,7 +40,7 @@ if (Database::rowCount() == 0) {
 
 	<script>
 		var interval = setInterval(function () {
-			$.get("api.php?id=<?=$_GET['id'];?>", function (resp) {
+			$.get("api.php?id=<?=$id;?>", function (resp) {
 				if (resp.matchmaking_status == "active") {
 					//Redirect to game
 					clearInterval(interval);

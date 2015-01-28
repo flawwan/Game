@@ -5,8 +5,8 @@ if (!User::loggedIn()) {
 	echo json_encode(["status" => false]);
 	exit();
 }
-$node = $_GET['id'];
-$data = Database::query("SELECT `matchmaking_status`,`matchmaking_id`,`matchmaking_key` FROM `matchmaking`
+$node = intval($_GET['id']);
+$data = Database::query("SELECT `matchmaking_status`,`matchmaking_id`,`matchmaking_key`,`game_play_url` FROM `matchmaking`
  								  LEFT JOIN `nodes` ON `nodes`.`game_id`=`matchmaking`.`matchmaking_node`
  								  WHERE `matchmaking_user`=:user AND `matchmaking_node`=:node", array(':node' => $node, ':user' => User::getUserID()))->fetch();
 echo json_encode($data);

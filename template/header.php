@@ -22,7 +22,8 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<?php if (User::loggedIn()): ?>
-			<li><a>Hej, <?=User::getUser();?>!</a></li><!--Ser ut som skit.. Men orkar inte ändra cssen just nu-->
+				<li><a>Hej, <?= htmlspecialchars(User::getUser(), ENT_QUOTES, 'UTF-8'); ?>!</a>
+				</li><!--Ser ut som skit.. Men orkar inte ändra cssen just nu-->
 			<?php endif; ?>
 			<li class="has-dropdown not-click">
 				<a href="#">Controlpanel</a>
