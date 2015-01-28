@@ -35,5 +35,4 @@ class User
 	{
 		return self::$userID;
 	}
-
 }

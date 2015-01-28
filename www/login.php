@@ -1,4 +1,4 @@
-<?php require '../lib/bootstrap.php'; ?>
+<?php require '../lib/Bootstrap.php'; ?>
 <?php
 if (User::loggedIn()) { //Cant register if logged in
 	header("location: index.php");

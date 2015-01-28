@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Game Central</title>
 	<link rel="stylesheet" href="public/css/foundation.min.css"/>
 	<script src="public/js/jquery.min.js"></script>
 </head>

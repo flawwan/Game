@@ -1,4 +1,4 @@
-<?php require '../lib/bootstrap.php'; ?>
+<?php require '../lib/Bootstrap.php'; ?>
 <?php
 if (!User::loggedIn()) {
 	header("location: login.php");
