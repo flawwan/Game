@@ -36,9 +36,9 @@ if (Database::rowCount() == 0) {
 	));
 }
 ?>
-	You are now queing for this game, queue started: <?= date("H:i:s", time()); ?>
-
-	<script>
+	You are now queue for this game, queue started: <?= date("H:i:s", time()); ?>
+	<div class="timer">Time in queue: <span>00:00</span></div>
+ 	<script>
 		var interval = setInterval(function () {
 			$.get("api.php?id=<?=$id;?>", function (resp) {
 				if (resp.matchmaking_status == "active") {
@@ -48,5 +48,21 @@ if (Database::rowCount() == 0) {
 				}
 			});
 		}, 3000); //check every 2 seconds for match
+		var s = 0;
+		var m = 0;
+		var time = [];
+		function fixTime(i) {
+			if (i<10) {i = "0" + i}
+			return i;
+		}
+		var timer = setInterval(function () {
+			s++;
+			if (s % 60 == 0)
+			{
+				m++;
+				s = 0;
+			}
+			$(".timer span").html(fixTime(m) + ":" + fixTime(s));
+		}, 1000);
 	</script>
 <?php require '../template/footer.php';
