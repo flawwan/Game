@@ -35,16 +35,24 @@ if (Database::rowCount() == 0) {
 		':node' => $id
 	));
 }
+
+//Get users in queue
+
+$searching = Database::query("SELECT count(`matchmaking_node`) as `searching` FROM `matchmaking` WHERE `matchmaking_node`=:node AND `matchmaking_last_seen` > DATE_ADD(NOW(), INTERVAL - 60 SECOND) GROUP BY `matchmaking_node`", array(
+	':node' => $id
+))->fetch()["searching"];
 ?>
+<p>Players searching right now: <span id="searching"><?=$searching;?></span></p>
 	You are now queue for this game, queue started: <?= date("H:i:s", time()); ?>
 	<div class="timer">Time in queue: <span>00:00</span></div>
  	<script>
 		var interval = setInterval(function () {
 			$.get("api.php?id=<?=$id;?>", function (resp) {
-				if (resp.matchmaking_status == "active") {
+				$("#searching").text(resp.searching);
+				if (resp.data.matchmaking_status == "active") {
 					//Redirect to game
 					clearInterval(interval);
-					window.location = resp.game_play_url + "?key=" + resp.matchmaking_key
+					window.location = resp.data.game_play_url + "?key=" + resp.data.matchmaking_key
 				}
 			});
 		}, 3000); //check every 2 seconds for match
