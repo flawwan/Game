@@ -13,7 +13,7 @@ Click on a game to join the queue.
 foreach ($nodes as $node):?>
 	<p>
 	<h2><a href="join.php?id=<?=$node["game_id"];?>"><?= htmlspecialchars($node['game_name'], ENT_QUOTES, 'UTF-8'); ?></a>
-	<a href="#"><?= User::getUserID() == $node["user_id"] ? "edit" : "";?></a></h2>
+	<a href="editNode.php?id=<?=$node['game_id']?>"><?= User::getUserID() == $node["user_id"] ? "edit" : "";?></a></h2>
 	<p>Created by: <?=$node["user_name"];?></p>
 	</p>
 <?php endforeach; ?>
