@@ -31,24 +31,6 @@ class Database
 		return self::$dbhandler;
 	}
 
-	public static function dbHealth()
-	{
-		try {
-			$start = microtime(true);
-			self::connectDatabase();
-			$time_elapsed = microtime(true) - $start;
-			return array(
-				'health' => true,
-				'response_time' => $time_elapsed
-			);
-		} catch (PDOException $e) {
-			return array(
-				'health' => false,
-				'response_time' => 0
-			);
-		}
-	}
-
 	public static function begin()
 	{
 		self::db()->beginTransaction();
@@ -66,13 +48,6 @@ class Database
 		return self::$sth;
 	}
 
-	/**
-	 * @param $sth PDO object
-	 */
-	public static function setStatement($sth)
-	{
-		self::$sth = $sth;
-	}
 
 	public static function fetch()
 	{

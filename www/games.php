@@ -1,12 +1,12 @@
-<?php require '../lib/Bootstrap.php'; ?>
-<?php
+<?php require '../lib/Bootstrap.php';
 if (!User::loggedIn()) {
 	header("location: login.php");
 	exit();
 }
 $nodes = Database::query("SELECT * FROM `nodes` LEFT JOIN `users` ON `nodes`.`game_creator`=`users`.`user_id`", array())->fetchAll();
-?>
-<?php require '../template/header.php'; ?>
+
+
+require '../template/header.php'; ?>
 Click on a game to join the queue.
 <?php
 foreach ($nodes as $node):?>

@@ -1,28 +1,29 @@
-<?php require '../lib/Bootstrap.php'; ?>
-<?php
+<?php require '../lib/Bootstrap.php';
 if (User::loggedIn() === false) {
 	header("location: login.php");
 	exit();
 }
 
 $status = '';
-$USER_ID = User::getUserID();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
 	$postUrl = $_POST['nodeUrl'];
 	$gameName = $_POST['gameName'];
 	$gamePlayers = $_POST['gamePlayers'];
 	$gamePlay = $_POST['playUrl'];
+
 	$uniqueKey = hash('SHA512', $postUrl . $gameName . bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)));
 	Database::query('INSERT INTO `nodes`(`game_post_url`,`game_name`, `game_creator`,`game_unique_hash`,`game_players`,`game_play_url`)
 	 				 VALUES(:post_url, :game_name,:user_id,:game_hash,:game_players,:play_url)',
 		array(':post_url' => $postUrl,
 			':game_name' => $gameName,
-			':user_id' => $USER_ID,
+			':user_id' => User::getUserID(),
 			':game_hash' => $uniqueKey,
 			':game_players' => $gamePlayers,
 			':play_url' => $gamePlay
 		));
-	$status = 'Node created, game private key: ' . $uniqueKey;
+	$status = 'Node created, game private key: ' . $uniqueKey . "<br>Make sure you save this key.";
 }
 
 ?>

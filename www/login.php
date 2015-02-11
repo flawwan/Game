@@ -1,5 +1,5 @@
-<?php require '../lib/Bootstrap.php'; ?>
 <?php
+require '../lib/Bootstrap.php';
 if (User::loggedIn()) { //Cant register if logged in
 	header("location: index.php");
 	exit();
@@ -18,10 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$status = "Could not login. Wrong username/pass";
 	}
 }
-
-?>
-
-<?php require '../template/header.php'; ?>
+require '../template/header.php'; ?>
 <form class='left' method='post'>
 	<fieldset>
 		<?= $status; ?>

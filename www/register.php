@@ -1,11 +1,9 @@
-<?php require '../lib/Bootstrap.php'; ?>
+<?php require '../lib/Bootstrap.php';
 
-<?php
 if (User::loggedIn()) { //Cant register if logged in
 	header("location: index.php");
 	exit();
 }
-
 
 $status = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,9 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 }
 
-?>
-
-<?php require '../template/header.php'; ?>
+require '../template/header.php'; ?>
 	<form class='left' method='post'>
 		<fieldset>
 			<p><?= $status; ?></p>
