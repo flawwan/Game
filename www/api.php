@@ -8,9 +8,11 @@ if (!User::loggedIn()) {
 $node = intval($_GET['id']);
 
 //Update last seen
-Database::query("UPDATE `matchmaking` SET `matchmaking_last_seen`=NOW() WHERE `matchmaking_user`=:user", array(':user' => User::getUserID()));
+Database::query("UPDATE `matchmaking` SET `matchmaking_last_seen`=NOW() WHERE `matchmaking_user`=:user AND `matchmaking_node`=:node",
+	array(':user' => User::getUserID(),
+		':node' => $node));
 
-$searching = Database::query("SELECT count(`matchmaking_node`) as `searching` FROM `matchmaking` WHERE `matchmaking_node`=:node AND `matchmaking_last_seen` > DATE_ADD(NOW(), INTERVAL - 60 SECOND) GROUP BY `matchmaking_node`", array(
+$searching = Database::query("SELECT count(`matchmaking_node`) as `searching` FROM `matchmaking` WHERE `matchmaking_node`=:node AND `matchmaking_last_seen` > DATE_ADD(NOW(), INTERVAL -5 SECOND) GROUP BY `matchmaking_node`", array(
 	':node' => $node
 ))->fetch()["searching"];
 

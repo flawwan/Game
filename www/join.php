@@ -38,7 +38,7 @@ if (Database::rowCount() == 0) {
 
 //Get users in queue
 
-$searching = Database::query("SELECT count(`matchmaking_node`) as `searching` FROM `matchmaking` WHERE `matchmaking_node`=:node AND `matchmaking_last_seen` > DATE_ADD(NOW(), INTERVAL - 60 SECOND) GROUP BY `matchmaking_node`", array(
+$searching = Database::query("SELECT count(`matchmaking_node`) as `searching` FROM `matchmaking` WHERE `matchmaking_node`=:node AND `matchmaking_last_seen` > DATE_ADD(NOW(), INTERVAL - 5 SECOND) GROUP BY `matchmaking_node`", array(
 	':node' => $id
 ))->fetch()["searching"];
 ?>
