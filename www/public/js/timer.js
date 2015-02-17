@@ -1,5 +1,5 @@
 var interval = setInterval(function () {
-    $.get("api.php?id=<?=$id;?>", function (resp) {
+    $.get("api.php?id=" + id, function (resp) {
         $("#searching").text(resp.searching);
         if (resp.data.matchmaking_status == "active") {
             //Redirect to game

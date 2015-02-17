@@ -43,8 +43,12 @@ $searching = Database::query("SELECT count(`matchmaking_node`) as `searching` FR
 	':node' => $id
 ))->fetch()["searching"];
 ?>
-<p>Players searching right now: <span id="searching"><?=$searching;?></span></p>
+	<p>Players searching right now: <span id="searching"><?= $searching; ?></span></p>
 	You are now queue for this game, queue started: <?= date("H:i:s", time()); ?>
 	<div class="timer">Time in queue: <span>00:00</span></div>
+	<script>
+		var id = <?=$id;?>;
+	</script>
 	<script src="public/js/timer.js"></script>
 <?php require '../template/footer.php';
+
