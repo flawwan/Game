@@ -28,7 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 require '../template/header.php'; ?>
-	<form class='left' method='post'>
+	<script type="text/javascript">
+		function validate(){
+			if(document.registration.password.value === document.registration.check.value){
+				return true;
+			}
+			else {
+				alert("Passwords did not match")
+				return false;
+			}
+		}
+	</script>
+	<form name="registration" class='left' method='post'>
 		<fieldset>
 			<p><?= $status; ?></p>
 			<legend>Skapa Användare:</legend>
@@ -36,7 +47,8 @@ require '../template/header.php'; ?>
 			<input class='left' type='text' name='username'/>
 			<label>Lösenord:</label>
 			<input type='password' name='password'/>
-			<input type='submit' class='button'/>
+			<input type='password' name='check'/>
+			<input type='submit' onclick="return validate();" class='button'/>
 			<a href="login.php">Logga in</a>
 		</fieldset>
 	</form>
