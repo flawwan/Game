@@ -16,7 +16,7 @@ foreach ($nodes as $node):?>
 	<p>
 	<h2><a href="join.php?id=<?=$node["game_id"];?>"><?= htmlspecialchars($node['game_name'], ENT_QUOTES, 'UTF-8'); ?></a></h2>
 	<p>In queue: <?=$searching?> | Created by: <?=$node["user_name"]." ";?>
-	<?=User::getUserID() == $node["user_id"] ? "<a href='editNode.php".$node['game_id']."'>edit</a>" : ""?>
+	<?=User::getUserID() == $node["user_id"] ? "<a href='editNode.php?id=".$node['game_id']."'>edit</a>" : ""?>
 	</p>
 <?php endforeach; ?>
 <?php require '../template/footer.php'; ?>
