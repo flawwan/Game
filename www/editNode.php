@@ -21,6 +21,7 @@ $oldGameName = $old['game_name'];
 $oldNodeUrl = $old['game_post_url'];
 $oldPlayUrl = $old['game_play_url'];
 $oldGamePlayers = $old['game_players'];
+$apiKey = $old['game_unique_hash'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$postUrl = $_POST['nodeUrl'];
@@ -55,6 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			</label>
 			<label>Game Players:
 				<input type="text" name="gamePlayers" value="<?= $oldGamePlayers ?>">
+			</label>
+			<label>Api Key:
+				<input type="text" disabled value="<?= $apiKey ?>">
 			</label>
 			<input type="submit" class="button"/>
 		</fieldset>
