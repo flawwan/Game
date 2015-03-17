@@ -37,14 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<input type="text" name="gameName" placeholder="Game name">
 			</label>
 			<label>Server Post URL:
-				<input type="text" name="nodeUrl" placeholder="Enter node post url here">
+				<input type="text" name="nodeUrl" placeholder="http://XX.XX.XX.XX/name/server.php">
 			</label>
 			<label>Play Url:
-				<input type="text" name="playUrl" placeholder="Enter play url">
+				<input type="text" name="playUrl" placeholder="http://XX.XX.XX.XX/name/play.php">
 			</label>
-			<label>Game Players:
-				<input type="text" name="gamePlayers" placeholder="Enter amount of min=max players for this game">
-			</label>
+<!--			<label>Game Players:-->
+<!--				<input type="text" name="gamePlayers" placeholder="Enter amount of min=max players for this game">-->
+<!--			</label>-->
+			<input type="hidden" name="gamePlayers" value="2" />
 			<input type="submit" class="button"/>
 		</fieldset>
 	</form>
