@@ -54,9 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<label>Play Url:
 				<input type="text" name="playUrl" value="<?= $oldPlayUrl ?>">
 			</label>
-			<label>Game Players:
-				<input type="text" name="gamePlayers" value="<?= $oldGamePlayers ?>">
-			</label>
+			<!--			<label>Game Players:-->
+			<!--				<input type="text" name="gamePlayers" value="--><? //= $oldGamePlayers ?><!--">-->
+			<!--			</label>-->
+			<input type="hidden" name="gamePlayers" value="<?= $oldGamePlayers; ?>"/>
 			<label>Api Key:
 				<input type="text" disabled value="<?= $apiKey ?>">
 			</label>
